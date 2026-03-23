@@ -1,27 +1,54 @@
-// List of blog json files in src/blogs/
-const blogFiles = ["23-03-2026.json", "10-02-2026.json", "01-01-2026.json"];
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute("data-theme");
+  const next = current === "dark" ? "light" : "dark";
+  html.setAttribute("data-theme", next);
+  localStorage.setItem("opendih-theme", next);
+}
 
+(function () {
+  const saved = localStorage.getItem("opendih-theme");
+  if (saved) {
+    document.documentElement.setAttribute("data-theme", saved);
+  } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    document.documentElement.setAttribute("data-theme", "dark");
+  }
+})();
+
+const blogFiles = [
+  "23-03-2026.json",
+  "10-02-2026.json",
+  "01-01-2026.json",
+];
 let isDescending = true;
 let blogCache = {};
 
-// Convert dd-mm-yyyy string to Date object
 function parseDate(filename) {
-  const cleanName = filename.replace(".json", "");
-  const [d, m, y] = cleanName.split("-");
-  return new Date(y, m - 1, d);
+  const parts = filename.replace(".json", "").split("-");
+  return new Date(parts[2], parts[1] - 1, parts[0]);
 }
 
-// Fetch and display blog list
+function formatDate(filename) {
+  const date = parseDate(filename);
+  return date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
 async function renderBlogs() {
   const container = document.getElementById("blog-container");
-  container.innerHTML = "";
+  container.innerHTML =
+    '<div style="padding: 20px; text-align:center; color: #888;">Loading publications...</div>';
 
-  const sorted = [...blogFiles].sort((a, b) => {
-    const dateA = parseDate(a);
-    const dateB = parseDate(b);
-    return isDescending ? dateB - dateA : dateA - dateB;
-  });
+  const sorted = [...blogFiles].sort((a, b) =>
+    isDescending
+      ? parseDate(b) - parseDate(a)
+      : parseDate(a) - parseDate(b),
+  );
 
+  let html = "";
   for (const file of sorted) {
     try {
       if (!blogCache[file]) {
@@ -29,45 +56,42 @@ async function renderBlogs() {
         if (!res.ok) continue;
         blogCache[file] = await res.json();
       }
-
       const data = blogCache[file];
-      const dateDisplay = file.replace(".json", "").replace(/-/g, " / ");
 
-      const item = `
-                <div class="blog-item" onclick="openBlog('${file}')">
-                    <span class="blog-date">${dateDisplay}</span>
-                    <span class="blog-title">${data.title}</span>
-                    <p style="font-size: 1rem; font-weight:300; margin:0; opacity:0.8;">${data.excerpt}</p>
-                </div>
-            `;
-      container.innerHTML += item;
-    } catch (err) {
-      console.warn("Error loading blog file:", file);
+      html += `
+        <div class="blog-item" onclick="openBlog('${file}')">
+          <div class="blog-date">${formatDate(file)}</div>
+          <h3 class="blog-title">${data.title}</h3>
+          <p class="blog-excerpt">${data.excerpt}</p>
+        </div>`;
+    } catch (e) {
+      console.warn("Failed to load blog:", file);
     }
   }
+  container.innerHTML =
+    html ||
+    '<div style="padding: 20px; text-align:center;">No publications found.</div>';
 }
 
-// Populate and show the modal
-function openBlog(filename) {
-  const data = blogCache[filename];
-  const contentArea = document.getElementById("modal-content");
-
-  contentArea.innerHTML = `
-        <div class="modal-body-title">${data.title}</div>
-        <div class="modal-body-content">${data.content}</div>
-    `;
+function openBlog(file) {
+  const data = blogCache[file];
+  document.getElementById("modal-content").innerHTML = `
+    <h2 class="modal-title">${data.title}</h2>
+    <div class="modal-content">${data.content}</div>`;
 
   document.getElementById("modal-overlay").classList.add("active");
   document.body.style.overflow = "hidden";
 }
 
-// Hide the modal
 function closeBlog() {
   document.getElementById("modal-overlay").classList.remove("active");
   document.body.style.overflow = "auto";
 }
 
-// Toggle date sorting and refresh list
+function handleOverlayClick(e) {
+  if (e.target.id === "modal-overlay") closeBlog();
+}
+
 function toggleSort() {
   isDescending = !isDescending;
   document.getElementById("sort-btn").innerText = isDescending
@@ -76,10 +100,7 @@ function toggleSort() {
   renderBlogs();
 }
 
-// Close modal on escape key
+renderBlogs();
 window.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeBlog();
 });
-
-// Run on page load
-renderBlogs();
