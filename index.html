@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -119,11 +119,292 @@
       </div>
     </footer>
 
-    <div id="modal-overlay" onclick="closeBlog(event)">
-      <div id="modal-window" onclick="event.stopPropagation()">
-        <button id="close-modal" onclick="closeBlog()">&#10005;</button>
-        <div id="modal-content"></div>
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header">
+    <span class="section-num">&#167; 01</span>
+    <div class="section-title-wrap"><h2>About the Collective</h2></div>
+  </div>
+  <div class="about-body reveal">
+    <div class="about-col">
+      <p>We are a collective of researchers and engineers dedicated to pushing the boundaries of Large Language Models.</p>
+      <p>Here at OpenDih, we are building the world's first <strong>collective-persona LLMs</strong>. Our models are trained on the lived experience and technical lore of thousands of developers, creating an AI that feels less like a machine and more like a room full of elite engineers.</p>
+      <p>The collective-persona approach represents a fundamental departure from standard training methodology &mdash; encoding not just knowledge, but <em>epistemic character</em>.</p>
+    </div>
+    <div class="about-col">
+      <div class="terminal">
+        <div class="terminal-bar">
+          <div class="term-dot r"></div>
+          <div class="term-dot y"></div>
+          <div class="term-dot g"></div>
+        </div>
+        <div class="term-line"><span class="term-p">opendih</span><span class="term-c">&nbsp;~ % opendih init --model ManGPT</span></div>
+        <span class="term-o">Resolving collective intelligence...</span>
+        <span class="term-o">Injecting 1000s of developer voices...</span>
+        <span class="term-o">Fusing persona layers [========] 100%</span>
+        <span class="term-o">Loading epistemic character matrix...</span>
+        <span class="term-ok term-o">Model ready. Parameters loaded. Let's build.</span>
+        <br>
+        <div class="term-line"><span class="term-p">opendih</span><span class="term-c">&nbsp;~ % <span class="blink"></span></span></div>
       </div>
     </div>
-  </body>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="section-header">
+    <span class="section-num">&#167; 02</span>
+    <div class="section-title-wrap"><h2>What We're Building</h2></div>
+  </div>
+  <div class="products-body reveal">
+    <div class="product-card model">
+      <div class="product-label">Flagship Model</div>
+      <h3>ManGPT</h3>
+      <p>Our xB parameter model &mdash; a collective-persona LLM trained on the lived experience and technical lore of thousands of developers. Designed to reason the way expert engineers reason.</p>
+      <span class="product-chip">xB Parameters</span>
+    </div>
+    <div class="product-card bot">
+      <div class="product-label">Discord Integration</div>
+      <h3>Man_bot</h3>
+      <p>A Discord bot providing direct access to ManGPT. Bring the reasoning capacity of a room full of elite engineers into your community, wherever you build and collaborate.</p>
+      <span class="product-chip live"><span class="chip-dot"></span>Active</span>
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section id="stack">
+  <div class="section-header">
+    <span class="section-num">&#167; 03</span>
+    <div class="section-title-wrap"><h2>Infrastructure</h2></div>
+  </div>
+  <div class="stack-body reveal">
+    <div class="stack-col">
+      <div class="stack-cat">Frameworks</div>
+      <div class="stack-item">PyTorch</div>
+      <div class="stack-item">JAX</div>
+      <div class="stack-item">HuggingFace Transformers</div>
+    </div>
+    <div class="stack-col">
+      <div class="stack-cat">Training</div>
+      <div class="stack-item">DeepSpeed</div>
+      <div class="stack-item">FSDP</div>
+      <div class="stack-item">FlashAttention</div>
+    </div>
+    <div class="stack-col">
+      <div class="stack-cat">Infrastructure</div>
+      <div class="stack-item">Kubernetes</div>
+      <div class="stack-item">Docker</div>
+      <div class="stack-item">NVIDIA H100s</div>
+    </div>
+    <div class="stack-col">
+      <div class="stack-cat">Languages</div>
+      <div class="stack-item">Python</div>
+      <div class="stack-item">Rust</div>
+      <div class="stack-item">CUDA</div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog">
+  <div class="section-header">
+    <span class="section-num">&#167; 04</span>
+    <div class="section-title-wrap"><h2>Publications &amp; Notes</h2></div>
+  </div>
+
+  <div class="blog-controls">
+    <span class="blog-count" id="blog-count">Loading entries...</span>
+    <button id="sort-btn" onclick="toggleSort()">
+      <svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><path d="M2 3h8M3 6h6M4 9h4" stroke-linecap="round"/></svg>
+      Newest First
+    </button>
+  </div>
+
+  <div id="blog-container">
+    <div class="blog-loading">
+      <span>Loading publications</span>
+      <span class="loading-dots"><span></span><span></span><span></span></span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header">
+    <span class="section-num">&#167; 05</span>
+    <div class="section-title-wrap"><h2>Contact &amp; Connect</h2></div>
+  </div>
+  <div class="contact-body reveal">
+    <div class="contact-left">
+      <p>We build in the open. Follow our research, contribute to the collective, or reach out to discuss collaboration.</p>
+      <p style="margin-top:2.5rem; font-family:var(--mono); font-size:0.68rem; color:var(--muted); letter-spacing:0.1em; font-style:normal; text-transform:uppercase;">
+        Made with care by the OpenDih Team
+      </p>
+    </div>
+    <div class="contact-right">
+      <a href="#" class="contact-link">
+        <!-- Globe -->
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        Website
+        <span class="contact-link-label">Coming Soon</span>
+      </a>
+      <a href="#" class="contact-link">
+        <!-- X mark for Twitter/X -->
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 6 6 18M6 6l12 12" stroke-linecap="round"/></svg>
+        Twitter / X
+        <span class="contact-link-label">Coming Soon</span>
+      </a>
+      <a href="#" class="contact-link">
+        <!-- Chat bubble for Discord -->
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Discord
+        <span class="contact-link-label">Community</span>
+      </a>
+      <a href="mailto:hello@opendih.ai" class="contact-link">
+        <!-- Email -->
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7" stroke-linecap="round"/></svg>
+        Email
+        <span class="contact-link-label">hello@opendih.ai</span>
+      </a>
+      <a href="#" class="contact-link">
+        <!-- GitHub -->
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        GitHub
+        <span class="contact-link-label">Coming Soon</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-brand">Open<em>Dih</em> Research Collective</span>
+  <span class="footer-copy">Made with care by the OpenDih Team &mdash; 2024</span>
+</footer>
+
+<!-- MODAL (slide-in panel) -->
+<div id="modal-overlay" onclick="handleOverlayClick(event)">
+  <div class="modal-panel" onclick="event.stopPropagation()">
+    <div class="modal-topbar">
+      <span class="modal-label">OpenDih &mdash; Publication</span>
+      <button class="modal-close" onclick="closeBlog()" aria-label="Close">
+        <svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l12 12M13 1L1 13"/></svg>
+      </button>
+    </div>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<script>
+  // ── BLOG SYSTEM ──────────────────────────────────────────────────────────
+  const blogFiles = ["23-03-2026.json", "10-02-2026.json", "01-01-2026.json"];
+  let isDescending = true;
+  let blogCache = {};
+
+  function parseDate(filename) {
+    const cleanName = filename.replace(".json", "");
+    const [d, m, y] = cleanName.split("-");
+    return new Date(y, m - 1, d);
+  }
+
+  function formatDate(filename) {
+    return parseDate(filename).toLocaleDateString('en-GB', {
+      day: 'numeric', month: 'long', year: 'numeric'
+    });
+  }
+
+  async function renderBlogs() {
+    const container = document.getElementById("blog-container");
+    const countEl   = document.getElementById("blog-count");
+
+    container.innerHTML = `
+      <div class="blog-loading">
+        <span>Loading publications</span>
+        <span class="loading-dots"><span></span><span></span><span></span></span>
+      </div>`;
+
+    const sorted = [...blogFiles].sort((a, b) =>
+      isDescending ? parseDate(b) - parseDate(a) : parseDate(a) - parseDate(b)
+    );
+
+    let html = '';
+    let loaded = 0;
+
+    for (const file of sorted) {
+      try {
+        if (!blogCache[file]) {
+          const res = await fetch(`src/blogs/${file}`);
+          if (!res.ok) continue;
+          blogCache[file] = await res.json();
+        }
+        const data = blogCache[file];
+        loaded++;
+        html += `
+          <div class="blog-item" onclick="openBlog('${file}')">
+            <span class="blog-date">${formatDate(file)}</span>
+            <span class="blog-title">${data.title}</span>
+            <div class="blog-arrow">
+              <svg viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 7h12M8 2l5 5-5 5"/>
+              </svg>
+            </div>
+            <p class="blog-excerpt">${data.excerpt || ''}</p>
+          </div>`;
+      } catch (err) {
+        console.warn("Error loading blog file:", file);
+      }
+    }
+
+    container.innerHTML = html || `<div class="blog-loading">No publications found.</div>`;
+    countEl.textContent = `${loaded} ${loaded === 1 ? 'entry' : 'entries'}`;
+  }
+
+  function openBlog(filename) {
+    const data = blogCache[filename];
+    if (!data) return;
+    const contentArea = document.getElementById("modal-content");
+    contentArea.innerHTML = `
+      <div class="modal-body-title">${data.title}</div>
+      <div class="modal-body-content">${data.content}</div>`;
+    contentArea.scrollTop = 0;
+    document.getElementById("modal-overlay").classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeBlog() {
+    document.getElementById("modal-overlay").classList.remove("active");
+    document.body.style.overflow = "auto";
+  }
+
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById("modal-overlay")) closeBlog();
+  }
+
+  function toggleSort() {
+    isDescending = !isDescending;
+    document.getElementById("sort-btn").innerHTML = `
+      <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 3h8M3 6h6M4 9h4" stroke-linecap="round"/>
+      </svg>
+      ${isDescending ? 'Newest First' : 'Oldest First'}`;
+    renderBlogs();
+  }
+
+  window.addEventListener("keydown", e => { if (e.key === "Escape") closeBlog(); });
+
+  renderBlogs();
+
+  // ── SCROLL REVEAL ─────────────────────────────────────────────────────────
+  const io = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting)
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
 </html>
