@@ -2,11 +2,20 @@ name: Deploy React App
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - uses: actions/checkout@v4
@@ -20,6 +29,7 @@ jobs:
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist   # or ./build (depends on your setup)
+          path: ./dist   # or ./build
 
-      - uses: actions/deploy-pages@v4
+      - id: deployment
+        uses: actions/deploy-pages@v4
